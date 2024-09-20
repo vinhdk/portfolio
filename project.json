@@ -1,0 +1,8 @@
+{
+  "name": "portfolio",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "includedScripts": [],
+  "sourceRoot": ".",
+  "projectType": "application",
+  "tags": ["aeiforge", "portfolio"]
+}
