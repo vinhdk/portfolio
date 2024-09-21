@@ -14,7 +14,7 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "nxCloudId": "66ed94769190964bbf816ad3",
+  "nxCloudId": "66ee807270b180246fd6dac0",
   "plugins": [
     {
       "plugin": "@nx/next/plugin",
@@ -25,35 +25,16 @@
         "serveStaticTargetName": "serve-static"
       }
     },
-    {
-      "plugin": "@nx/playwright/plugin",
-      "options": {
-        "targetName": "e2e"
-      }
-    },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      }
-    },
+    { "plugin": "@nx/playwright/plugin", "options": { "targetName": "e2e" } },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    { "plugin": "@nx/jest/plugin", "options": { "targetName": "test" } },
     {
       "plugin": "nx-stylelint/plugin",
-      "options": {
-        "targetName": "stylelint"
-      }
+      "options": { "targetName": "stylelint" }
     }
   ],
   "targetDefaults": {
-    "e2e-ci--**/*": {
-      "dependsOn": ["^build"]
-    },
+    "e2e-ci--**/*": { "dependsOn": ["^build"] },
     "stylelint": {
       "cache": true,
       "options": {
@@ -72,20 +53,10 @@
         "passWithNoTests": true,
         "jestConfig": "{projectRoot}/jest.config.ts"
       },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
+      "configurations": { "ci": { "ci": true, "codeCoverage": true } }
     }
   },
   "generators": {
-    "@nx/next": {
-      "application": {
-        "style": "tailwind",
-        "linter": "eslint"
-      }
-    }
+    "@nx/next": { "application": { "style": "tailwind", "linter": "eslint" } }
   }
 }
