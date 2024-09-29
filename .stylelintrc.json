@@ -5,7 +5,7 @@
     "stylelint-config-tailwindcss/scss"
   ],
   "plugins": ["stylelint-scss"],
-  "ignoreFiles": ["!**/*", "src/app/global.css"],
+  "ignoreFiles": ["!**/*", "src/app/global.scss"],
   "overrides": [
     {
       "files": ["*.scss", "*.css"],

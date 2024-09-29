@@ -7,7 +7,7 @@
   },
   "private": false,
   "author": "Aeiforge",
-  "homepage": "https://github.com/aeiforge/portfolio",
+  "homepage": "https://aeiforge-portfolio.vercel.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/aeiforge/portfolio.git"
@@ -21,9 +21,14 @@
     "portfolio"
   ],
   "dependencies": {
+    "@react-three/drei": "^9.114.0",
+    "@react-three/fiber": "^8.17.8",
+    "framer-motion": "^11.5.6",
     "next": "14.2.10",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "three": "^0.169.0",
+    "three-stdlib": "^2.33.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -48,6 +53,7 @@
     "@types/node": "18.16.9",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.0",
+    "@types/three": "^0.169.0",
     "autoprefixer": "10.4.13",
     "babel-jest": "^29.7.0",
     "eslint": "^9.8.0",
