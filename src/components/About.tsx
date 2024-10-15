@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 interface AboutProps {
   fullName: string;
@@ -10,8 +10,13 @@ interface AboutProps {
   technologies: string[];
 }
 
-const About: React.FC<AboutProps> = ({ fullName, description, image, technologies }) => {
-  const sectionRef = useRef(null);
+const About: FC<AboutProps> = ({
+  fullName,
+  description,
+  image,
+  technologies,
+}) => {
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,10 +50,12 @@ const About: React.FC<AboutProps> = ({ fullName, description, image, technologie
   };
 
   const renderDescription = (text: string) => {
-    const parts = text.split(/(\{highlight\}.*?\{\/highlight\})/g);
+    const parts = text.split(/(\{highlight}.*?\{\/highlight})/g);
     return parts.map((part, index) => {
       if (part.startsWith('{highlight}') && part.endsWith('{/highlight}')) {
-        const highlightedText = part.replace('{highlight}', '').replace('{/highlight}', '');
+        const highlightedText = part
+          .replace('{highlight}', '')
+          .replace('{/highlight}', '');
         return (
           <span key={index} className="highlight">
             {highlightedText}
@@ -67,7 +74,7 @@ const About: React.FC<AboutProps> = ({ fullName, description, image, technologie
           {description.map((paragraph, index) => (
             <p key={index}>{renderDescription(paragraph)}</p>
           ))}
-          <p>Here are a few technologies I've been working with recently:</p>
+          <p>{'Here are a few technologies I\'ve been working with recently:'}</p>
           <ul className="about_skills">
             {technologies.map((tech, index) => (
               <li className="highlight" key={index}>

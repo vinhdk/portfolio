@@ -1,137 +1,53 @@
+@import '../styles/fonts.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Start Font */
-@font-face {
-  font-family: 'SF Mono';
-  src: url('/fonts/sf-mono/SFMonoBold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF Mono';
-  src: url('/fonts/sf-mono/SFMonoRegular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Calibre';
-  src: url('/fonts/calibre/Calibre-Semibold.eot');
-  src:
-    local('Calibre Semibold'),
-    local('Calibre-Semibold'),
-    url('/fonts/calibre/Calibre-Semibold.eot?#iefix')
-      format('embedded-opentype'),
-    url('/fonts/calibre/Calibre-Semibold.woff2') format('woff2'),
-    url('/fonts/calibre/Calibre-Semibold.woff') format('woff'),
-    url('/fonts/calibre/Calibre-Semibold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Calibre';
-  src: url('/fonts/calibre/Calibre-Regular.eot');
-  src:
-    local('Calibre'),
-    local('Calibre-Regular'),
-    url('/fonts/calibre/Calibre-Regular.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/calibre/Calibre-Regular.woff2') format('woff2'),
-    url('/fonts/calibre/Calibre-Regular.woff') format('woff'),
-    url('/fonts/calibre/Calibre-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-/* End Font */
-
 /* Start Global styles */
-html {
+* {
+  @apply box-border scroll-smooth font-mono;
+
   -webkit-text-size-adjust: 100%;
-  font-family: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
-  line-height: 1.5;
-  tab-size: 4;
-  scroll-behavior: smooth;
 }
 
 body {
-  font-family: inherit;
-  line-height: inherit;
-  margin: 0;
-}
-
-h1,
-h2,
-p,
-pre {
-  margin: 0;
-}
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: currentColor;
-}
-h1,
-h2 {
-  font-size: inherit;
-  font-weight: inherit;
-}
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-pre {
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    Monaco,
-    Consolas,
-    Liberation Mono,
-    Courier New,
-    monospace;
-}
-svg {
-  display: block;
-  vertical-align: middle;
-  shape-rendering: auto;
-  text-rendering: optimizeLegibility;
-}
-pre {
-  background-color: rgba(55, 65, 81, 1);
-  border-radius: 0.25rem;
-  color: rgba(229, 231, 235, 1);
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    Monaco,
-    Consolas,
-    Liberation Mono,
-    Courier New,
-    monospace;
-  overflow: scroll;
-  padding: 0.5rem 0.75rem;
+  @apply bg-primary-dark font-[inherit] text-slate;
 }
 
 :root {
   --primary-dark: #1b283b;
   --secondary-dark: #7e98c4;
-  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   --lightest-slate: #ccd6f6;
   --slate: #8892b0;
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+
+.numbered-heading {
+  @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
+
+  &::before {
+    @apply mr-2 text-secondary-dark;
+    counter-increment: section var(--section-number);
+    content: '0' counter(section) '.';
+  }
+
+  &::after {
+    @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
+    content: '';
+  }
+}
+
+.shaded-button {
+  @apply w-full rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
+
+  @screen md {
+    @apply w-fit;
+  }
+}
+
 /* End Global styles */
+
 /* Start Animation */
 @keyframes wave {
   0% {
@@ -214,7 +130,7 @@ pre {
     @apply px-12;
   }
 
-  &--hidden {
+  &-hidden {
     transform: translateY(-100%);
   }
 }
@@ -238,45 +154,11 @@ pre {
     @apply mr-auto;
   }
 
-  &_shade {
-    @apply -ml-6 flex h-screen min-h-screen w-screen flex-col items-center;
-
-    @screen md {
-      @apply hidden;
-    }
-  }
-
   &_menu {
     @apply flex flex-col items-center gap-4;
 
     @screen md {
-      @apply hidden;
-    }
-
-    ul {
-      li {
-        @apply hover:text-secondary-dark;
-      }
-    }
-  }
-
-  &_resume {
-    @apply mt-4 block w-full px-6;
-
-    @screen md {
-      @apply hidden;
-    }
-
-    button {
-      @apply w-full rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
-    }
-  }
-
-  &_menu-desktop {
-    @apply hidden;
-
-    @screen md {
-      @apply flex items-center gap-8;
+      @apply flex-row justify-end;
     }
 
     ul {
@@ -293,7 +175,6 @@ pre {
 
           &:hover {
             @apply text-secondary-dark;
-            transform: translateY(-2px);
 
             &::after {
               @apply w-full;
@@ -304,15 +185,22 @@ pre {
     }
   }
 
-  &_resume-desktop {
-    @apply ml-8 hidden;
+  &_resume {
+    @apply mt-4 block w-full px-6;
 
     @screen md {
-      @apply block;
+      @apply ml-4 mt-0 block w-fit px-0;
     }
+  }
 
-    button {
-      @apply rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
+  &_menu,
+  &_resume {
+    &.desktop.important {
+      @apply hidden;
+
+      @screen md {
+        @apply flex;
+      }
     }
   }
 
@@ -334,10 +222,31 @@ pre {
 
 /* Start Banner */
 .banner {
-  @apply flex h-screen min-h-screen flex-col justify-center bg-primary-dark;
+  @apply flex h-screen w-full flex-col-reverse justify-center bg-primary-dark;
 
-  @screen md {
-    @apply mx-auto max-w-[1000px];
+  @screen lg {
+    @apply flex-row gap-2;
+  }
+
+  &_office,
+  &_intro {
+    @apply w-full;
+  }
+
+  &_office {
+    @apply h-1/2;
+
+    @screen lg {
+      @apply h-full w-1/2;
+    }
+  }
+
+  &_intro {
+    @apply pt-20;
+
+    @screen lg {
+      @apply flex w-fit flex-col justify-center;
+    }
   }
 
   &_greeting {
@@ -346,12 +255,12 @@ pre {
   }
 
   &_name {
-    @apply font-calibre text-[clamp(40px,8vw,80px)] font-semibold text-lightest-slate;
+    @apply font-calibre text-[clamp(40px,8vw,60px)] font-semibold text-lightest-slate;
     line-height: 1.1;
   }
 
   &_sologan {
-    @apply mt-2 font-calibre text-[clamp(40px,8vw,80px)] font-semibold text-slate;
+    @apply mt-2 font-calibre text-[clamp(40px,8vw,60px)] font-semibold text-slate;
     line-height: 0.9;
   }
 
@@ -362,7 +271,7 @@ pre {
   &_info {
     @apply flex flex-col gap-4;
 
-    @screen md {
+    @screen xl {
       @apply flex-row gap-8;
     }
   }
@@ -441,137 +350,54 @@ pre {
 
 /* Start About */
 .about {
-  @apply mx-auto max-w-[1000px] py-16 text-slate;
+  @apply mx-auto my-20 h-full max-w-[1000px];
 
-  &_inner {
-    @apply grid items-center gap-12;
-
-    @screen md {
-      @apply grid-cols-[3fr,2fr] items-start gap-0;
-    }
+  &_container {
+    @apply grid h-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-6;
   }
 
-  &_content {
-    p {
-      @apply mb-4;
-    }
+  &_world-map {
+    @apply col-span-1 flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:row-span-2;
   }
 
-  .numbered-heading {
-    @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
+  &_technologies {
+    @apply col-span-1 flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:row-span-3;
 
-    &::before {
-      @apply mr-2 text-secondary-dark;
-      counter-increment: section 1;
-      content: '0' counter(section) '.';
-    }
+    .key-technologies,
+    .future-technologies {
+      @apply grid h-3/4 w-full grid-cols-3 gap-4 p-6;
 
-    &::after {
-      @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
-      content: '';
-    }
-  }
+      &_icon {
+        @apply flex flex-col items-center;
 
-  &_skills {
-    @apply mt-5 grid grid-cols-[repeat(2,minmax(140px,200px))] gap-x-2 gap-y-1 overflow-hidden;
-
-    li {
-      @apply relative pl-5;
-
-      &::before {
-        @apply absolute left-0;
-        content: '▹';
-      }
-    }
-  }
-
-  &_image {
-    @apply relative mx-auto max-w-[300px];
-
-    @screen md {
-      @apply mr-5 max-w-[300px] justify-self-end;
-    }
-
-    &_wrapper {
-      @apply relative block;
-
-      &::before {
-        @apply absolute -bottom-5 -right-4 z-[-1] block h-full w-[calc(100%+2rem)] border-2 border-secondary-dark;
-        content: '';
-
-        @screen md {
-          @apply -right-5 -top-5 w-full;
-        }
-      }
-
-      &::after {
-        content: '';
-        @apply absolute -bottom-5 -left-5 z-[-1] hidden h-full w-full bg-secondary-dark;
-
-        @screen lg {
-          @apply block;
-        }
-      }
-
-      &:hover::before {
-        @screen md {
-          @apply -right-4 -top-4;
-        }
-      }
-
-      &:hover::after {
-        @screen md {
-          @apply -bottom-4 -left-4;
+        &-name {
+          @apply mt-2 text-sm;
         }
       }
     }
+  }
 
-    img {
-      @apply rounded;
-      filter: grayscale(50%) brightness(70%);
-      transition: filter 0.3s ease;
-    }
+  &_greeting {
+    @apply flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:col-span-1 xl:row-span-4;
 
-    &:hover img {
-      filter: none;
+    &_model {
+      @apply h-3/4 w-full;
     }
   }
 
-  .show-more-btn {
-    background: none;
-    border: none;
-    color: #64ffda;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-    padding: 5px 10px;
-    text-decoration: underline;
-  }
+  &_expectations {
+    @apply flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:col-span-2 xl:row-span-3;
 
-  .show-more-btn:hover {
-    color: #45e0bc;
+    &_model {
+      @apply h-3/4 w-full;
+    }
   }
 }
-/* End About */
+/* End About*/
 
 /* Start Skills */
 .skills {
   @apply mx-auto max-w-[1000px] py-16;
-
-  .numbered-heading {
-    @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
-
-    &::before {
-      @apply mr-2 text-secondary-dark;
-      counter-increment: section 2;
-      content: '0' counter(section) '.';
-    }
-
-    &::after {
-      @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
-      content: '';
-    }
-  }
 
   &_grid {
     @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3;
@@ -626,7 +452,7 @@ pre {
   }
 
   &_other-tech-item {
-    @apply rounded-full bg-secondary-dark px-3 py-1 text-sm;
+    @apply rounded-full bg-secondary-dark px-3 py-1 text-sm text-primary-dark;
   }
 }
 /* End Skills */
@@ -698,7 +524,7 @@ pre {
   }
 
   &_company {
-    @apply mb-1 text-xl font-semibold text-lightest-slate;
+    @apply mb-1 text-sm font-semibold text-lightest-slate;
   }
 
   &_duration {
@@ -715,21 +541,6 @@ pre {
 
   &_link {
     @apply text-secondary-dark hover:underline;
-  }
-
-  .numbered-heading {
-    @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
-
-    &::before {
-      @apply mr-2 text-secondary-dark;
-      counter-increment: section 3;
-      content: '0' counter(section) '.';
-    }
-
-    &::after {
-      @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
-      content: '';
-    }
   }
 }
 /* End Work Experience */

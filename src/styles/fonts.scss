@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/sf-mono/SFMonoBold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/sf-mono/SFMonoRegular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Calibre;
+  src: url('/fonts/calibre/Calibre-Semibold.eot');
+  src:
+    local('Calibre Semibold'),
+    local('Calibre-Semibold'),
+    url('/fonts/calibre/Calibre-Semibold.eot?#iefix')
+      format('embedded-opentype'),
+    url('/fonts/calibre/Calibre-Semibold.woff2') format('woff2'),
+    url('/fonts/calibre/Calibre-Semibold.woff') format('woff'),
+    url('/fonts/calibre/Calibre-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Calibre;
+  src: url('/fonts/calibre/Calibre-Regular.eot');
+  src:
+    local('Calibre'),
+    local('Calibre-Regular'),
+    url('/fonts/calibre/Calibre-Regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/calibre/Calibre-Regular.woff2') format('woff2'),
+    url('/fonts/calibre/Calibre-Regular.woff') format('woff'),
+    url('/fonts/calibre/Calibre-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
